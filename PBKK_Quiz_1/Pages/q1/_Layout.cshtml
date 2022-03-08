@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    @* <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">WebAppQuiz1</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>*@
+    @{
+        var profileNav = "";
+        var profileLink = "navbar-link-normal";
+
+        var companyNav = "";
+        var companyLink = "navbar-link-normal";
+
+        var serviceNav = "";
+        var serviceLink = "navbar-link-normal";
+
+        var collabNav = "";
+        var collabLink = "navbar-link-normal";
+
+        if (ViewData["Title"]?.ToString() == "Profile")
+        {
+            profileNav = "navbar-item-active";
+            profileLink = "navbar-link-active";
+        }
+        if (ViewData["Title"]?.ToString() == "Company")
+        {
+            companyNav = "navbar-item-active";
+            companyLink = "navbar-link-active";
+        }
+        if (ViewData["Title"]?.ToString() == "Services")
+        {
+            serviceNav = "navbar-item-active";
+            serviceLink = "navbar-link-active";
+        }
+        if (ViewData["Title"]?.ToString() == "Collaboration")
+        {
+            collabNav = "navbar-item-active";
+            collabLink = "navbar-link-active";
+        }
+    }
+
+    <header>
+        <nav class="navbar sticky-top">
+            <div class="navbar-content">
+                <div class="navbar-left">
+                    <a asp-area="" asp-page="Index">
+                        <img style="max-height: 50px;" src="~/img/logo.svg" alt="app logo" />
+                    </a>
+                </div>
+
+
+
+                <div class="navbar-right">
+                    <ul style="display: flex; flex-wrap: wrap; margin-left: auto; padding-left: 0; margin-bottom: 0; list-style: none;">
+                        <li class="nav-item @profileNav">
+                            <a class="navbar-link @profileLink" asp-area="" asp-page="profile">Profile</a>
+                        </li>
+                        <li class="nav-item @companyNav">
+                            <a class="navbar-link @companyLink" asp-area="" asp-page="company">Company</a>
+                        </li>
+                        <li class="nav-item @serviceNav">
+                            <a class="navbar-link @serviceLink" asp-area="" asp-page="service">Services</a>
+                        </li>
+                        <li class="nav-item @collabNav">
+                            <a class="navbar-link @collabLink" asp-area="" asp-page="collaboration">Collaboration</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Octagram
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
